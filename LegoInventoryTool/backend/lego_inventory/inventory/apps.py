@@ -12,4 +12,4 @@ class DndcharactercustomizerConfig(AppConfig):
        When the app is ready this ensures the signal handler defined are registered
     """
     def ready(self):
-        import dndCharacterCustomizer.signals
+        import lego_inventory.signals

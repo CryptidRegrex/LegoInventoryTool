@@ -2,7 +2,7 @@
 
 import django.core.validators
 import django.db.models.deletion
-import dndCharacterCustomizer.models
+import lego_inventory.models
 import uuid
 from django.conf import settings
 from django.db import migrations, models
@@ -29,7 +29,7 @@ class Migration(migrations.Migration):
             name='Character',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('image', models.ImageField(blank=True, null=True, upload_to=dndCharacterCustomizer.models.Character.user_directory_path)),
+                ('image', models.ImageField(blank=True, null=True, upload_to=lego_inventory.models.Character.user_directory_path)),
                 ('name', models.CharField(max_length=100)),
                 ('race', models.CharField(help_text="Character's race, e.g., Elf, Human, Dwarf", max_length=50)),
                 ('background', models.CharField(help_text="Character's background, e.g., Soldier, Noble", max_length=50)),
