@@ -19,4 +19,4 @@ COPY . /app/
 EXPOSE 8000
 
 # Step 8: Set the command to run the Django server
-CMD python manage.py runserver 0.0.0.0:8000 --cert-file /app/ssl/cert.pem --key-file /app/ssl/key.pem
+CMD python manage.py runserver 0.0.0.0:8000 
