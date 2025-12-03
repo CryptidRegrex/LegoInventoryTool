@@ -19,5 +19,10 @@ from django.urls import path, include
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("api/", include("inventory.urls")),
+    
+    # built-in auth: /accounts/login/, /accounts/logout/, etc.
+    path("accounts/", include("django.contrib.auth.urls")),
+
+    # your app
+    path("", include("inventory.urls")),
 ]

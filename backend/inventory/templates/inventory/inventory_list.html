@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>My Inventory – Lego Parts</title>
+</head>
+<body>
+  <header>
+    <h1>My Lego Parts</h1>
+
+    {% if request.user.is_authenticated %}
+      <p>
+        Logged in as {{ request.user.username }} |
+        <a href="{% url 'logout' %}">Log out</a>
+      </p>
+    {% else %}
+      <p>
+        <a href="{% url 'login' %}">Log in</a> |
+        <a href="{% url 'inventory:signup' %}">Sign up</a>
+      </p>
+    {% endif %}
+  </header>
+
+  <main>
+    {% if items %}
+      <table border="1" cellpadding="4" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Part #</th>
+            <th>Name</th>
+            <th>Color</th>
+            <th>Quantity</th>
+            <th>Location</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in items %}
+            <tr>
+              <td>{{ item.part.part_num }}</td>
+              <td>{{ item.part.name }}</td>
+              <td>{{ item.color.name }}</td>
+              <td>{{ item.quantity }}</td>
+              <td>{{ item.location }}</td>
+              <td>{{ item.notes }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>You don't have any parts in your inventory yet.</p>
+    {% endif %}
+  </main>
+</body>
+</html>

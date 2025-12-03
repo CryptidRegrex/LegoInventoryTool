@@ -1,27 +1,10 @@
 from django.contrib import admin
 from .models import (
-    Theme,
-    LegoSet,
     PartCategory,
     Part,
     Color,
-    SetPart,
     InventoryItem,
 )
-
-
-@admin.register(Theme)
-class ThemeAdmin(admin.ModelAdmin):
-    list_display = ("name",)
-    search_fields = ("name",)
-
-
-@admin.register(LegoSet)
-class LegoSetAdmin(admin.ModelAdmin):
-    list_display = ("set_num", "name", "theme", "year", "num_parts")
-    list_filter = ("theme", "year")
-    search_fields = ("set_num", "name")
-
 
 @admin.register(PartCategory)
 class PartCategoryAdmin(admin.ModelAdmin):
@@ -43,15 +26,13 @@ class ColorAdmin(admin.ModelAdmin):
     search_fields = ("name",)
 
 
-@admin.register(SetPart)
-class SetPartAdmin(admin.ModelAdmin):
-    list_display = ("lego_set", "part", "color", "quantity")
-    list_filter = ("lego_set", "color")
-    search_fields = ("lego_set__set_num", "lego_set__name", "part__part_num", "part__name")
-
-
 @admin.register(InventoryItem)
 class InventoryItemAdmin(admin.ModelAdmin):
-    list_display = ("part", "color", "quantity", "location")
-    list_filter = ("color", "location")
-    search_fields = ("part__part_num", "part__name", "location")
+    list_display = ("owner", "part", "color", "quantity", "location")
+    list_filter = ("owner", "color", "location")
+    search_fields = (
+        "owner__username",
+        "part__part_num",
+        "part__name",
+        "location",
+    )

@@ -1,24 +1,13 @@
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from .views import (
-    ThemeViewSet,
-    LegoSetViewSet,
-    PartCategoryViewSet,
-    PartViewSet,
-    ColorViewSet,
-    SetPartViewSet,
-    InventoryItemViewSet,
-)
+from django.urls import path
+from . import views
 
-router = DefaultRouter()
-router.register(r"themes", ThemeViewSet)
-router.register(r"sets", LegoSetViewSet, basename="lego-set")
-router.register(r"part-categories", PartCategoryViewSet)
-router.register(r"parts", PartViewSet)
-router.register(r"colors", ColorViewSet)
-router.register(r"set-parts", SetPartViewSet)
-router.register(r"inventory", InventoryItemViewSet)
+app_name = "inventory"
 
 urlpatterns = [
-    path("", include(router.urls)),
+    path("signup/", views.signup, name="signup"),
+    path("inventory/", views.inventory_list, name="inventory_list"),
+
+    # you can make the home page redirect to inventory if you like
+    path("", views.inventory_list, name="home"),
 ]
+
